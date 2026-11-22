@@ -166,3 +166,18 @@ A utilização do sistema deve respeitar a legislação aplicável, incluindo a 
 ## Licença
 
 A definir.
+
+## Privacy and limitations
+...
+
+## Third-party models
+
+### YuNet
+
+- Model: `face_detection_yunet_2023mar.onnx`
+- Source: [OpenCV Zoo - YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)
+- Copyright: © 2020 Shiqi Yu
+- License: MIT
+- License text: [YUNET-MIT-LICENSE.txt](third_party_licenses/YUNET-MIT-LICENSE.txt)
+
+The model is distributed under the MIT License.
