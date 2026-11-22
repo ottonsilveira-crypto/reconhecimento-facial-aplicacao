@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Datasets e dados biométricos
+data/raw/
+data/processed/
+data/private/
+data/app/
+*.sqlite3
+*.db
+
+# Modelos e checkpoints locais
+artifacts/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+
+# Logs e resultados privados
+logs/
+*.log
+results/private_evaluation_aggregate.json
+
+# Caches
+.cache/
+scikit_learn_data/
+
+# Configurações sensíveis
+.env
+
+# Saídas de depuração com imagens pessoais
+debug_output/

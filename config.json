@@ -1,0 +1,7 @@
+{
+    "threshold": 0.45,
+    "device": "cpu",
+    "model_path": "artifacts/lfw_resnet18_finetuned.pt",
+    "detector_path": "artifacts/face_detection_yunet_2023mar.onnx",
+    "database_path": "data/app/database.sqlite3"
+}
