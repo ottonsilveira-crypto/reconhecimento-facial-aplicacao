@@ -74,8 +74,8 @@ reconhecimento-facial/
 Clone o repositório:
 
 ```powershell
-git clone URL_DO_REPOSITORIO
-cd reconhecimento-facial
+git clone https://github.com/ottonsilveira-crypto/reconhecimento-facial-aplicacao
+cd reconhecimento-facial-aplicacao
 ```
 
 Crie e ative um ambiente virtual:
