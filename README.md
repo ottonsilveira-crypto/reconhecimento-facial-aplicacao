@@ -29,10 +29,9 @@ Aplicação desktop de reconhecimento facial desenvolvida em Python, com process
 ## Organização do projeto
 
 ```text
-reconhecimento-facial/
+reconhecimento-facial-aplicacao/
 │
 ├── app/
-│   ├── __init__.py
 │   └── main_window.py
 │
 ├── src/
@@ -48,14 +47,16 @@ reconhecimento-facial/
 │
 ├── tests/
 │   ├── test_database.py
+│   ├── test_metrics.py
 │   └── test_recognition.py
 │
-├── artifacts/
-│   ├── lfw_resnet18_finetuned.pt
-│   └── face_detection_yunet_2023mar.onnx
+├── third_party_licenses/
+│   └── YUNET-MIT-LICENSE.txt
 │
-├── data/
-├── logs/
+├── artifacts/       # Modelos locais, não incluídos no repositório
+├── data/            # Dados locais da aplicação
+├── logs/            # Logs locais
+├── .gitignore
 ├── config.json
 ├── requirements.txt
 ├── main.py
@@ -74,7 +75,7 @@ reconhecimento-facial/
 Clone o repositório:
 
 ```powershell
-git clone https://github.com/ottonsilveira-crypto/reconhecimento-facial-aplicacao
+git clone https://github.com/ottonsilveira-crypto/reconhecimento-facial-aplicacao.git
 cd reconhecimento-facial-aplicacao
 ```
 
@@ -91,26 +92,34 @@ Instale as dependências:
 pip install -r requirements.txt
 ```
 
-Caso o PySide6 não esteja incluído nas dependências:
-
-```powershell
-pip install PySide6
-```
-
 ## Modelos necessários
 
-Os arquivos de modelo não são incluídos automaticamente no repositório.
+Os arquivos dos modelos não são incluídos diretamente no repositório.
 
-Disponibilize os seguintes arquivos na pasta `artifacts/`:
+A aplicação requer os seguintes arquivos na pasta `artifacts/`:
 
-- `lfw_resnet18_finetuned.pt`: modelo de embeddings faciais.
+- `lfw_resnet18_finetuned.pt`: modelo de embeddings faciais treinado com base no ResNet-18.
 - `face_detection_yunet_2023mar.onnx`: modelo de detecção facial YuNet.
 
-Os caminhos podem ser alterados em `config.json`.
+### Download do YuNet
+
+O modelo YuNet está disponível na Release `v1.0.0` do projeto:
+
+[Baixar YuNet – Release v1.0.0](https://github.com/ottonsilveira-crypto/reconhecimento-facial-aplicacao/releases/tag/v1.0.0)
+
+Após o download, coloque o arquivo `face_detection_yunet_2023mar.onnx` na pasta `artifacts/`.
+
+### Modelo ResNet-18
+
+O checkpoint `lfw_resnet18_finetuned.pt` não é distribuído junto ao repositório ou à Release.
+
+Para executar a aplicação, é necessário fornecer esse arquivo separadamente e colocá-lo na pasta `artifacts/`.
+
+Os caminhos dos modelos podem ser alterados em `config.json`.
 
 ## Configuração
 
-O arquivo `config.json` permite configurar os parâmetros principais:
+O arquivo `config.json` permite configurar os principais parâmetros da aplicação:
 
 ```json
 {
@@ -122,7 +131,7 @@ O arquivo `config.json` permite configurar os parâmetros principais:
 }
 ```
 
-O threshold determina a similaridade mínima necessária para aceitar uma identificação.
+O parâmetro `threshold` determina a similaridade mínima necessária para aceitar uma identificação.
 
 O valor utilizado é experimental e pode precisar de calibração conforme o conjunto de dados e as condições de utilização.
 
@@ -147,7 +156,7 @@ python -m unittest discover -s tests -v
 ## Privacidade e proteção de dados
 
 - O processamento das imagens é realizado localmente.
-- A aplicação não depende de envio de fotografias para serviços em nuvem.
+- A aplicação não depende do envio de fotografias para serviços em nuvem.
 - As fotografias utilizadas no cadastro são processadas para gerar embeddings; as imagens originais não são armazenadas pelo banco de dados da aplicação.
 - Os embeddings são dados biométricos sensíveis e ficam armazenados localmente em SQLite.
 - O banco SQLite não possui criptografia própria.
@@ -165,19 +174,18 @@ A utilização do sistema deve respeitar a legislação aplicável, incluindo a 
 
 ## Licença
 
-A definir.
+A licença do código-fonte deste projeto ainda será definida.
 
-## Privacy and limitations
-...
+A licença do código-fonte não se estende automaticamente aos modelos de terceiros utilizados pela aplicação.
 
-## Third-party models
+## Modelos de terceiros
 
 ### YuNet
 
-- Model: `face_detection_yunet_2023mar.onnx`
-- Source: [OpenCV Zoo - YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)
+- Modelo: `face_detection_yunet_2023mar.onnx`
+- Origem: [OpenCV Zoo – YuNet](https://github.com/opencv/opencv_zoo/tree/main/models/face_detection_yunet)
 - Copyright: © 2020 Shiqi Yu
-- License: MIT
-- License text: [YUNET-MIT-LICENSE.txt](third_party_licenses/YUNET-MIT-LICENSE.txt)
+- Licença: MIT
+- Texto da licença: [YUNET-MIT-LICENSE.txt](third_party_licenses/YUNET-MIT-LICENSE.txt)
 
-The model is distributed under the MIT License.
+O modelo YuNet é distribuído sob os termos da licença MIT. Consulte o arquivo de licença incluído no projeto para obter os termos completos.
